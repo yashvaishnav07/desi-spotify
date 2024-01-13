@@ -1,0 +1,2 @@
+export const SPOTIFY_IMG_BLACK = "https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Black.png"
+export const SPOTIFY_IMG_WHITE = "https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png"
