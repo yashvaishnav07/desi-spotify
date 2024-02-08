@@ -3,9 +3,9 @@ import CurrentTrack from './CurrentTrack'
 import PlayTrack from './PlayTrack'
 import Volume from './Volume'
 
-const Footer = () => {
+const Footerrrr = () => {
   return (
-    <div className='flex justify-around bg-black text-white h-full border-t-2 border-t-gray-800 w-full'>
+    <div className='flex justify-around bg-black text-white h-full w-full'>
       <CurrentTrack />
       <PlayTrack />
       <Volume />
@@ -13,4 +13,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footerrrr

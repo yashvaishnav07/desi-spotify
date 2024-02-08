@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { addCurrentPlayingTrack } from '../utils/spotifySlice'
-import PlayTrack from './PlayTrack';
 
 const CurrentTrack = () => {
     const user = useSelector(store => store.user)
-    const spotify = useSelector(store => store.spotify)
+    const currentPlayingTrack = useSelector(store => store.spotify.currentPlayingTrack)
     const dispatch = useDispatch();
 
     const getCurrentTrack = async () => {
@@ -17,21 +16,20 @@ const CurrentTrack = () => {
             }
         })
         const { item } = data;
-        console.log(item);
         dispatch(addCurrentPlayingTrack(item))
     }
 
     useEffect(() => {
-        getCurrentTrack()
-    }, []);
+        !currentPlayingTrack && getCurrentTrack()
+    });
     return (
         <div className='flex gap-4 items-center col-span-1'>
-            <img className="rounded-lg" src={spotify.currentPlayingTrack?.album.images[2].url} alt="Track" />
+            <img className="rounded-lg" src={currentPlayingTrack?.album.images[2].url} alt="Track" />
             <div className='flex flex-col'>
-                <h1 className='text-lg'>{spotify.currentPlayingTrack?.name}</h1>
-                <h6 className='text-sm text-slate-400'>{spotify.currentPlayingTrack?.artists.map((artist, index) => {
+                <p className='text-nowrap text-lg'>{currentPlayingTrack?.name}</p>
+                <p className='text-sm text-slate-400'>{currentPlayingTrack?.artists.map((artist, index) => {
                     return artist.name
-                }).join(',')}</h6>
+                }).join(',')}</p>
             </div>
         </div>
     )

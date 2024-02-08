@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCurrentPlaylist } from '../utils/spotifySlice'
 
-const WorkSpace = () => {
-
+const PlaylistView = () => {
     const spotify = useSelector(store => store.spotify)
     const user = useSelector(store => store.user)
     const dispatch = useDispatch()
@@ -16,7 +15,6 @@ const WorkSpace = () => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(data)
         dispatch(addCurrentPlaylist(data));
     }
 
@@ -85,4 +83,4 @@ const WorkSpace = () => {
     )
 }
 
-export default WorkSpace
+export default PlaylistView

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPlaylist, addCurrentPlayingId } from '../utils/spotifySlice'
+import PlaylistCard from './Cards/PlaylistCard'
 
 const Playlists = () => {
 
@@ -17,24 +18,20 @@ const Playlists = () => {
             }
         })
         const { items } = data;
+        console.log(items);
         dispatch(addPlaylist(items))
-    }
-
-    const getPlaylist = (id) => {
-        console.log(id);
-        dispatch(addCurrentPlayingId(id))
     }
 
     useEffect(() => {
         getUserPlaylists()
-    }, []);
+    }, [user.token]);
 
     return (
-        <div className='h-5/6 overflow-auto'>
-            <ul className='flex flex-col space-y-3 ms-10 my-3 overflow-auto h-4/6'>{spotify.spotifyPlaylist &&
-                spotify.spotifyPlaylist.map(({ name, id }) => {
+        <div className='overflow-auto'>
+            <ul className='flex flex-col space-y-4 overflow-auto'>{spotify.spotifyPlaylist &&
+                spotify.spotifyPlaylist.map((playlist) => {
                     return (
-                        <li className='cursor-pointer transition ease-in-out hover:text-white' key={id} onClick={() => getPlaylist(id)}>{name}</li>
+                        <PlaylistCard name={playlist.name} description={`${playlist?.type}.${playlist?.owner?.display_name}`} imgUrl={playlist.images[0].url}/>
                     )
                 })
             }</ul>

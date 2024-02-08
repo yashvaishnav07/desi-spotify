@@ -6,7 +6,11 @@ const spotifySlice = createSlice({
         spotifyPlaylist: null,
         currentPlaylistId: '0xTuEbHC6Y52fkHGxMwGBJ',
         currentPlaylist:null,
-        currentPlayingTrack: null
+        currentPlayingTrack: null,
+        categoryPlaylist: {
+            hiphop: null,
+            soul: null,
+        }
     },
     reducers: {
         addPlaylist: (state, action) => {
@@ -20,9 +24,12 @@ const spotifySlice = createSlice({
         },
         addCurrentPlayingId: (state,action) => {
             state.currentPlaylistId = action.payload
+        },
+        addCategoryPlaylist: (state,action) => {
+            state.categoryPlaylist[action.payload.name] = action.payload.data
         }
     },
 })
 
-export const { addPlaylist, addCurrentPlaylist, addCurrentPlayingTrack, addCurrentPlayingId } = spotifySlice.actions;
+export const { addPlaylist, addCurrentPlaylist, addCurrentPlayingTrack, addCurrentPlayingId, addCategoryPlaylist } = spotifySlice.actions;
 export default spotifySlice;

@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { BiShuffle } from "react-icons/bi";
-import { BiSkipNext } from "react-icons/bi";
-import { BiSkipPrevious } from "react-icons/bi";
-import { IoPlayCircle } from "react-icons/io5";
+import React, { useState } from 'react'
 import { FiRepeat } from "react-icons/fi";
-import { IoPauseCircle } from "react-icons/io5";
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { getByTestId } from '@testing-library/react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    BsFillPlayCircleFill,
+    BsFillPauseCircleFill,
+    BsShuffle,
+} from "react-icons/bs";
+import { CgPlayTrackNext, CgPlayTrackPrev } from "react-icons/cg";
+import { addCurrentPlayingTrack } from '../utils/spotifySlice';
 
 const PlayTrack = () => {
-
     const user = useSelector(store => store.user)
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [playerState, setplayerState] = useState(false);
+    const dispatch = useDispatch();
 
     const getTrack = async (type) => {
-        await axios.post(`https://api.spotify.com/v1/me/player/${type}`,{}, {
+        await axios.post(`https://api.spotify.com/v1/me/player/${type}`, {}, {
             headers: {
                 Authorization: `Bearer ${user.token}`,
                 'Content-Type': 'application/json'
@@ -23,10 +24,43 @@ const PlayTrack = () => {
         })
     }
 
+    const changeState = async () => {
+        setplayerState(!playerState)
+        const state = playerState ? "pause" : "play";
+        await axios.put(
+            `https://api.spotify.com/v1/me/player/${state}`,
+            {},
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + user.token,
+                },
+            }
+        );
+    };
 
-    const changeState = async (type) => {
-        setIsPlaying(!isPlaying)
-    }
+    const changeTrack = async (type) => {
+        await axios.post(
+            `https://api.spotify.com/v1/me/player/${type}`,
+            {},
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + user.token,
+                },
+            }
+        );
+        const { data } = await axios.get(
+            "https://api.spotify.com/v1/me/player/currently-playing",
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + user.token,
+                },
+            }
+        );
+        dispatch(addCurrentPlayingTrack(data.item))
+    };
 
     return (
         <div className='flex items-center justify-center gap-8 text-4xl col-span-2   w-5/6'>
@@ -35,17 +69,17 @@ const PlayTrack = () => {
                 {/* <FiRepeat onClick={() => getTrack('repeat')} /> */}
             </div>
             <div>
-                <BiSkipPrevious onClick={() => getTrack('previous')} />
+                <CgPlayTrackPrev onClick={() => changeTrack('previous')} />
             </div>
             <div>
-                {isPlaying ? <IoPauseCircle onClick={changeState}/> : <IoPlayCircle onClick={changeState}/>}
+                {playerState ? <BsFillPauseCircleFill onClick={changeState} /> : <BsFillPlayCircleFill onClick={changeState} />}
             </div>
 
             <div>
-                <BiSkipNext onClick={() => getTrack('next')} />
+                <CgPlayTrackNext onClick={() => changeTrack('next')} />
             </div>
             <div>
-                <BiShuffle />
+                <BsShuffle />
                 {/* <BiShuffle onClick={() => getTrack('shuffle')}/> */}
             </div>
         </div>
