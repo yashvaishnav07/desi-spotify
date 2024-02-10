@@ -23,7 +23,7 @@ export default function PlaylistHeader({ className, playlist }) {
     >
       <p className="opacity-75">{playlist.description}</p>
 
-      <div className="flex flex-wrap gap-1 items-center">
+      <div className="flex flex-wrap gap-1 items-center text-white">
         <div className="flex gap-1">
           <div className="bg-neutral-400 w-[20px] aspect-square rounded-full" />
           <Link className="font-bold text-sm hover:underline hover:underline-offset-1">
@@ -31,7 +31,7 @@ export default function PlaylistHeader({ className, playlist }) {
           </Link>
         </div>
         &#8226;
-        <p>
+        <p className="text-sm">
           {playlist.tracks.total} songs,
           {hours > 0 ? (
             <> about {hours} hr</>

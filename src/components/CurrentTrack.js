@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { addCurrentPlayingTrack } from '../utils/spotifySlice'
+import { addCurrentPlayingTrack, setIsPlayingTrack } from '../utils/spotifySlice'
 
 const CurrentTrack = () => {
     const user = useSelector(store => store.user)
     const currentPlayingTrack = useSelector(store => store.spotify.currentPlayingTrack)
+    const recentlyPlayingTrack = useSelector(store => store.spotify.recentlyPlayingTrack)
     const dispatch = useDispatch();
 
     const getCurrentTrack = async () => {
@@ -17,11 +18,15 @@ const CurrentTrack = () => {
         })
         const { item } = data;
         dispatch(addCurrentPlayingTrack(item))
+        if (item) {
+            dispatch(setIsPlayingTrack(true));
+        }
     }
 
     useEffect(() => {
         !currentPlayingTrack && getCurrentTrack()
     });
+
     return (
         <div className='flex gap-4 items-center col-span-1'>
             <img className="rounded-lg" src={currentPlayingTrack?.album.images[2].url} alt="Track" />

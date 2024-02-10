@@ -5,6 +5,7 @@ import useFeaturedPlaylists from "../hooks/useFeaturedPlaylists";
 import { routes } from "../shared/routes";
 import { useSelector } from "react-redux";
 import useCategoryPlaylist from "../hooks/useCategoryPlaylist";
+import useRecentlyPlayed from "../hooks/useRecentlyPlayed";
 
 export default function Home() {
   const user = useSelector(store => store.user)
@@ -12,6 +13,7 @@ export default function Home() {
   const featuredPlaylists = useFeaturedPlaylists(50);
   useCategoryPlaylist('soul', user.token);
   useCategoryPlaylist('hiphop', user.token);
+  useRecentlyPlayed(user.token);
 
   return (
     <div className="px-7 mt-20">

@@ -5,7 +5,7 @@ import Volume from './Volume'
 
 const Footerrrr = () => {
   return (
-    <div className='flex justify-around bg-black text-white h-full w-full'>
+    <div className='flex bg-black text-white h-full w-full justify-between'>
       <CurrentTrack />
       <PlayTrack />
       <Volume />

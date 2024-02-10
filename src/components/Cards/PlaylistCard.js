@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from "./Card";
 
-const PlaylistCard = ({ name, description, imgUrl }) => {
+const PlaylistCard = ({ name, type, owner, imgUrl }) => {
   const head = (
     <img
       src={imgUrl}
@@ -12,7 +12,11 @@ const PlaylistCard = ({ name, description, imgUrl }) => {
     <Card className={`overflow-hidden`} head={head}>
       <div className='flex flex-col justify-center items-start w-full mx-3'>
         <div className="text-white">{name}</div>
-        <div className="text-zinc-500">{description}</div>
+        <div className="text-zinc-500 flex text-sm">
+          {type}
+        &#8226;
+          {owner}
+        </div>
       </div>
     </Card>
   )

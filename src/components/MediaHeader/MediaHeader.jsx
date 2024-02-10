@@ -12,7 +12,7 @@ export default function MediaHeader({
 }) {
   return (
     <header className={className}>
-      <div className="flex gap-6 items-end">
+      <div className="flex gap-6 items-end text-white">
         <img src={coverImage} className="w-60 shadow-xl shadow-neutral-900" />
 
         <div className="flex flex-col justify-between">
