@@ -32,8 +32,8 @@ export default function Login() {
 
   const getAuthorized = async () => {
     const clientId = process.env.REACT_APP_CLIENT_ID_PRE
-    const scope = ['user-read-playback-state', 'user-modify-playback-state', 'user-read-currently-playing','user-read-playback-position', 'user-top-read', 'user-read-recently-played', 'user-read-email', 'user-read-private']
-    const redirectUrl = "http://localhost:3000/desi-spotify"
+    const scope = ['user-read-playback-state', 'user-read-playback-state', 'user-modify-playback-state', 'user-modify-playback-state', 'user-read-currently-playing', 'user-read-playback-position', 'user-top-read', 'user-read-recently-played', 'user-read-email', 'user-read-private']
+    const redirectUrl = "https://desi-spotify.vercel.app/desi-spotify"
     const apiUrl = "https://accounts.spotify.com/authorize"
 
     window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&response_type=token&scope=${scope}&show_dialog=false`;
