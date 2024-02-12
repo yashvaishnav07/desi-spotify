@@ -16,6 +16,7 @@ export default function PlaylistTrackRow({ number, trackInfo }) {
   const dispatch = useDispatch();
 
   const playTrack = async () => {
+    debugger
     const response = await axios.put(
       `https://api.spotify.com/v1/me/player/play`,
       {

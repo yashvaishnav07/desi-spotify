@@ -21,7 +21,7 @@ const Volume = () => {
       };
   return (
     <div className='col-span-1 flex'>
-        <input type="range" onMouseUp={(e) => setVolume(e)} min={0} max={100}/>
+        <input type="range" onMouseUp={(e) => setVolume(e)} min={0} max={100} default={100}/>
     </div>
   )
 }

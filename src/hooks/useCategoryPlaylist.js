@@ -7,6 +7,7 @@ export default function useCategoryPlaylist(category, token) {
     const dispatch = useDispatch();
     const categoryPlaylist = useSelector(store => store.spotify.categoryPlaylist)
     const getCategoryPlaylist = async () => {
+        if (!token) return;
         const { data } = await axios.get(`https://api.spotify.com/v1/browse/categories/${category}/playlists`, {
             headers: {
                 Authorization: `Bearer ${token}`,

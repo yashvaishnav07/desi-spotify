@@ -36,7 +36,7 @@ export default function Login() {
     const redirectUrl = "http://localhost:3000/desi-spotify"
     const apiUrl = "https://accounts.spotify.com/authorize"
 
-    window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&response_type=token&scope=${scope}&show_dialog=true`;
+    window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&response_type=token&scope=${scope}&show_dialog=false`;
   }
 
   return (

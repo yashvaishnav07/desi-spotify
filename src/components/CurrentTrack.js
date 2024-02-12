@@ -10,6 +10,7 @@ const CurrentTrack = () => {
     const dispatch = useDispatch();
 
     const getCurrentTrack = async () => {
+        if (!user.token) return
         const { data } = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
             headers: {
                 Authorization: `Bearer ${user.token}`,
@@ -29,7 +30,8 @@ const CurrentTrack = () => {
 
     return (
         <div className='flex gap-4 items-center col-span-1'>
-            <img className="rounded-lg" src={currentPlayingTrack?.album.images[2].url} alt="Track" />
+            <img className="rounded-lg" src={
+                currentPlayingTrack?.album.images[2].url} alt="Track" />
             <div className='flex flex-col'>
                 <p className='text-nowrap text-lg'>{currentPlayingTrack?.name}</p>
                 <p className='text-sm text-slate-400'>{currentPlayingTrack?.artists.map((artist, index) => {

@@ -7,6 +7,7 @@ export default function useRecentlyPlayed(token) {
     const dispatch = useDispatch();
     const recentlyPlayedTrack = useSelector(store => store.spotify.recentlyPlayedTrack)
     const getRecentlyPlayed = async () => {
+        if(!token) return;
         const { data } = await axios.get(`https://api.spotify.com/v1/me/player/recently-played`, {
             headers: {
                 Authorization: `Bearer ${token}`,
