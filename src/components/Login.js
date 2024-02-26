@@ -31,7 +31,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const getAuthorized = async () => {
-    const clientId = process.env.REACT_APP_CLIENT_ID_PRE
+    const clientId = 'f568c23d98424cb58c341c2660524dc7'
     const scope = ['user-read-playback-state', 'user-read-playback-state', 'user-modify-playback-state', 'user-modify-playback-state', 'user-read-currently-playing', 'user-read-playback-position', 'user-top-read', 'user-read-recently-played', 'user-read-email', 'user-read-private']
     const redirectUrl = "http://localhost:3000/desi-spotify"
     const apiUrl = "https://accounts.spotify.com/authorize"
