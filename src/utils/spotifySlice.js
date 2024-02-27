@@ -11,7 +11,8 @@ const spotifySlice = createSlice({
             hiphop: null,
             soul: null,
         },
-        recentlyPlayedTrack: null
+        recentlyPlayedTrack: null,
+        searchData: null,
     },
     reducers: {
         addPlaylist: (state, action) => {
@@ -34,9 +35,12 @@ const spotifySlice = createSlice({
         },
         setIsPlayingTrack: (state, action) => {
             state.isPlayingTrack = action.payload
+        },
+        setSearchData: (state, action) => {
+            state.searchData = action.payload
         }
     },
 })
 
-export const { addPlaylist, addCurrentPlaylist, addCurrentPlayingTrack, addCurrentPlayingId, addCategoryPlaylist, addRecentlyPlayedTrack, setIsPlayingTrack } = spotifySlice.actions;
+export const { addPlaylist, addCurrentPlaylist, addCurrentPlayingTrack, addCurrentPlayingId, addCategoryPlaylist, addRecentlyPlayedTrack, setIsPlayingTrack, setSearchData } = spotifySlice.actions;
 export default spotifySlice;

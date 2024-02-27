@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function sumDurations(tracks) {
   return tracks.reduce((total, current) => {
-    return total + current.track.duration_ms;
+    return total + current.track?.duration_ms;
   }, 0);
 }
 
@@ -27,7 +27,7 @@ export default function PlaylistHeader({ className, playlist }) {
         <div className="flex gap-1">
           <div className="bg-neutral-400 w-[20px] aspect-square rounded-full" />
           <Link className="font-bold text-sm hover:underline hover:underline-offset-1">
-            {playlist.owner.display_name}
+            {playlist.owner?.display_name}
           </Link>
         </div>
         &#8226;

@@ -4,7 +4,7 @@ import { millisecondsToMinSec } from "../../utils/timeConvert";
 
 export default function TrackHeader({ track }) {
   const [minutes, seconds] = track
-    ? millisecondsToMinSec(track.duration_ms)
+    ? millisecondsToMinSec(track?.duration_ms)
     : [0, 0];
 
   return (
