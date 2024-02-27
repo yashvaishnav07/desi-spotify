@@ -73,7 +73,7 @@ const PlaylistView = () => {
                                 <span>{track.track.album.name}</span>i
                             </div>
                             <div className='truncate col-span-1'>
-                                <span>{track.track.duration_ms}</span>
+                                <span>{track.track?.duration_ms}</span>
                             </div>
                         </div>
                     )
