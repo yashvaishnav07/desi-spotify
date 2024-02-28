@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import Body from './components/Body'
 import Login from './components/Login'
 import { paths } from './shared/routes'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Home from './components/Home'
 import ErrorComponent from './components/ErrorComponent'
-import Playlist from './components/Playlist'
 import Search from './components/Search'
-import Album from './components/Album'
+import SkeletonLoader from './components/Loader/SkeletonLoader'
+
+const Home = lazy(() => import('./components/Home'));
+const Playlist = lazy(() => import('./components/Playlist'));
+const Album = lazy(() => import('./components/Album'));
 
 const App = () => {
 
   const router = createBrowserRouter([
     {
       path: paths.LOGIN,
-      element: <Login />, 
+      element: <Login />,
     },
     {
       path: paths.ERROR,
@@ -26,25 +28,38 @@ const App = () => {
       children: [
         {
           path: paths.HOME,
-          element: <Home />,
+          element: (
+            <Suspense fallback={<SkeletonLoader />}>
+              <Home />
+            </Suspense>
+          ),
         },
         {
           path: paths.SEARCH,
-          element: <Search/>,
+          element: <Search />,
         },
         {
           path: paths.PLAYLIST,
-          element: <Playlist/>,
+          element: (
+            <Suspense fallback={<SkeletonLoader />}>
+              <Playlist />
+            </Suspense>
+          ),
         },
         {
           path: paths.ALBUM,
-          element: <Album/>,
+          element: (
+            <Suspense fallback={<SkeletonLoader />}>
+              <Album />
+            </Suspense>
+          ),
         },
       ],
     },
   ]);
-return (
-    <RouterProvider router={router}/>
-)}
+  return (
+    <RouterProvider router={router} />
+  )
+}
 
 export default App

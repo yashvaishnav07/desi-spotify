@@ -18,14 +18,18 @@ export default function PlaylistHeader({ className, playlist }) {
     <MediaHeader
       className={className}
       mediaType="Playlist"
-      coverImage={playlist.images[0].url}
+      coverImage={playlist.images?.[0].url}
       mediaTitle={playlist.name}
     >
       <p className="opacity-75">{playlist.description}</p>
 
       <div className="flex flex-wrap gap-1 items-center text-white">
         <div className="flex gap-1">
-          <div className="bg-neutral-400 w-[20px] aspect-square rounded-full" />
+          <img
+            className="w-[20px] aspect-square rounded-full"
+            src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png"
+            alt="owner"
+          />
           <Link className="font-bold text-sm hover:underline hover:underline-offset-1">
             {playlist.owner?.display_name}
           </Link>

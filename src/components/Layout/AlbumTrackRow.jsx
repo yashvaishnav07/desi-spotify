@@ -47,11 +47,6 @@ export default function AlbumTrackRow({ number, trackInfo }) {
         </FlatButton>
       </td>
       <td className="flex gap-3 overflow-hidden">
-        <img
-          src={trackInfo?.album?.images[0]?.url}
-          loading="lazy"
-          className="w-10"
-        />
         <div className="w-full">
           <Link
             to="#"

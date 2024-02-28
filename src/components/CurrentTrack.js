@@ -18,8 +18,8 @@ const CurrentTrack = () => {
             }
         })
         const { item } = data;
-        dispatch(addCurrentPlayingTrack(item))
         if (item) {
+            dispatch(addCurrentPlayingTrack(item))
             dispatch(setIsPlayingTrack(true));
         }
     }
