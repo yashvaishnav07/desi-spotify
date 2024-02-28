@@ -4,10 +4,9 @@ import PlaylistGrid from "./PlaylistGrid";
 import AlbumTrackRow from "./AlbumTrackRow";
 
 export default function AlbumTrackTable({ tracks }) {
-  console.log(tracks);
   return (
     <table className="relative w-full text-neutral-300">
-      <PlaylistGrid className="sticky bg-neutral-800 top-[70px] border-b-[1px] border-neutral-700 px-12 pb-2 mb-5">
+      <PlaylistGrid className="sticky bg-neutral-800 top-[70px] border-b-[1px] border-neutral-700 px-12 pb-2 mb-5 place-items-start">
         <th>#</th>
         <th>Title</th>
         <th>Album</th>
