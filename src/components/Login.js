@@ -29,14 +29,29 @@ const authProviders = [
 
 export default function Login() {
   const navigate = useNavigate();
-
+  const client_id = process.env.REACT_APP_CLIENT_ID_PRE
+  const scope = [
+    'user-read-playback-state',
+    'user-modify-playback-state',
+    'user-read-currently-playing',
+    'app-remote-control',
+    'streaming',
+    'playlist-read-private',
+    'playlist-read-collaborative',
+    'playlist-modify-private',
+    'playlist-modify-public',
+    'user-read-playback-position',
+    'user-top-read',
+    'user-read-recently-played',
+    'user-read-email',
+    'user-read-private',
+    'user-library-modify',
+    'user-library-read',
+  ]
+  const redirect_uri = "https://desi-spotify.vercel.app/desi-spotify"
+  const apiUrl = "https://accounts.spotify.com/authorize"
   const getAuthorized = async () => {
-    const clientId = process.env.REACT_APP_CLIENT_ID_PRE
-    const scope = ['user-read-playback-state', 'user-read-playback-state', 'user-modify-playback-state', 'user-modify-playback-state', 'user-read-currently-playing', 'user-read-playback-position', 'user-top-read', 'user-read-recently-played', 'user-read-email', 'user-read-private']
-    const redirectUrl = "https://desi-spotify.vercel.app/desi-spotify"
-    const apiUrl = "https://accounts.spotify.com/authorize"
-
-    window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&response_type=token&scope=${scope}&show_dialog=false`;
+    window.location.href = `${apiUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=token&scope=${scope.join('%2C')}&show_dialog=true`;
   }
 
   return (
