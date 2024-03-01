@@ -29,14 +29,29 @@ const authProviders = [
 
 export default function Login() {
   const navigate = useNavigate();
-
+  const client_id = process.env.REACT_APP_CLIENT_ID_PRE
+  const scope = [
+    'user-read-playback-state',
+    'user-modify-playback-state',
+    'user-read-currently-playing',
+    'app-remote-control',
+    'streaming',
+    'playlist-read-private',
+    'playlist-read-collaborative',
+    'playlist-modify-private',
+    'playlist-modify-public',
+    'user-read-playback-position',
+    'user-top-read',
+    'user-read-recently-played',
+    'user-read-email',
+    'user-read-private',
+    'user-library-modify',
+    'user-library-read',
+  ]
+  const redirect_uri = "http://localhost:3000/desi-spotify"
+  const apiUrl = "https://accounts.spotify.com/authorize"
   const getAuthorized = async () => {
-    const clientId = 'f568c23d98424cb58c341c2660524dc7'
-    const scope = ['user-read-playback-state', 'user-read-playback-state', 'user-modify-playback-state', 'user-modify-playback-state', 'user-read-currently-playing', 'user-read-playback-position', 'user-top-read', 'user-read-recently-played', 'user-read-email', 'user-read-private']
-    const redirectUrl = "http://localhost:3000/desi-spotify"
-    const apiUrl = "https://accounts.spotify.com/authorize"
-
-    window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&response_type=token&scope=${scope}&show_dialog=false`;
+    window.location.href = `${apiUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=token&scope=${scope.join('%2C')}&show_dialog=true`;
   }
 
   return (

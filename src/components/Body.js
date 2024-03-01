@@ -10,9 +10,8 @@ import { addToken } from "../utils/userSlice";
 import Footerrrr from './Footerrrr';
 
 const Body = () => {
-  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  useEffect(() => {
+    useEffect(() => {
     const token = window.location.hash.substring(1).split('&')[0].split('=')[1]
     dispatch(addToken(token));
   });
